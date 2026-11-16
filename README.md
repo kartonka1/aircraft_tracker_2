@@ -97,3 +97,35 @@ print(manager.get_aeroplanes_with_keyword("ACA"))
 Нельзя запускать частое автоматическое геокодирование стран. Кеширование
 геометрий уже реализовано в базе; для регулярного использования за пределами
 учебного проекта изучите политику Nominatim и условия OpenSky.
+
+## Проверка данных в PostgreSQL
+
+После запуска программы можно проверить сохранённые данные
+через pgAdmin 4.
+
+Количество стран:
+
+```sql
+SELECT COUNT(*) FROM countries;
+```
+
+Количество самолётов:
+
+```sql
+SELECT COUNT(*) FROM aeroplanes;
+```
+
+Средняя скорость самолётов:
+
+```sql
+SELECT ROUND(AVG(velocity)::numeric, 2)
+FROM aeroplanes;
+```
+
+Проверка работы всех модулей:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+Все 8 модульных тестов успешно пройдены.
